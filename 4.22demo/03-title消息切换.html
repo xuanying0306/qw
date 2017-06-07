@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript">
+        //setInterval(函数名,时间) 无限循环执行
+        //setTimeout(函数名,时间)  执行一次
+        // 时间单位:毫秒
+        //1000毫秒= 1秒
+        
+
+        //控制标题文字显示
+        //[亲爱的傲世@群雄玩家]  [您的大乔已超神!]
+        var a = 1;
+        function message(){
+        	if(a == 1){
+        	document.title = "[亲爱的傲世@群雄玩家]";
+        	a = 2;	
+			}else{
+			document.title = "[您的大乔已超神!]";
+			a = 1;
+			}
+        }
+       	message();
+        setInterval(message,1000);
+        //5秒之后跳转到花瓣网页 
+        //window.location = 'www.baidu.com';
+
+        // window.location = 'www.baidu.com';
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <script type="text/javascript">
+    // setInterval(函数名,时间)
+    var n = 0;
+
+    function getup(){
+    	n++;
+    	document.title = n;
+    	if( n == 8){
+    		//停止计时
+    		clearInterval(getup);
+    	}
+    	console.log('起床了！')
+    }
+    // getup();
+    // getup();
+
+    // 时间，单位ms    1000ms = 1s;
+    setInterval(getup, 1000);   //无限循环
+    // setTimeout(getup, 2000);	//只执行一次
+    </script>
+    </body>
+</html>

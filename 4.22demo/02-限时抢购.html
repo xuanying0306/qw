@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+			*{ margin:0;padding:0;}
+			.time_box{ width: 300px;line-height: 45px;
+				border:1px solid #ccc;margin:10px auto;
+				text-align: center; background: #eee;
+				}
+			.time_box span{ color:red;}
+        </style>
+    </head>
+    <body>
+    	<div class="time_box">
+    		<h1>限时抢购啦！</h1>
+    		<p>还剩<span id="time_span"></span></p>
+    	</div>
+    	<script type="text/javascript">
+        // 1.随机数
+            var min = 3;
+            var max = 5;
+            var num = Math.random()*(max-min)+min;
+            console.log(num);
+
+        // 2.限时抢购
+    	function getTIme(){
+    	//活动结束时间-现在时间 2017/11/11 11:11:11
+    	var endtime = new Date('2017/11/11 11:11:11').getTime();
+    	var nowtime = new Date().getTime();
+    	//console.log(endtime);
+    	//console.log(nowtime);
+    	var left_time = endtime-nowtime;//剩余的毫秒数
+    	//console.log(left_time);
+    	//天   时  分   秒
+        // 算法1
+    	// var day = parseInt(left_time/1000/60/60/24);
+    	// var H = parseInt(left_time/1000/60/60%24);
+    	// var M = parseInt(left_time/1000/60%60);
+    	// var S = parseInt(left_time/1000%60);
+
+
+        // 算法2
+        var day=Math.floor(left_time/1000/(60*60*24));
+        var H=Math.floor((left_time/1000-day*24*60*60)/3600); 
+        var M=Math.floor((left_time/1000-day*24*60*60-H*3600)/60); 
+        var S=Math.floor(left_time/1000-day*24*60*60-H*3600-M*60);
+
+    	var time_txt = day+"天"+H+"小时"+M+"分"+S+"秒";
+    	document.getElementById('time_span').innerHTML = time_txt;
+	    }
+	    getTIme();
+	    setInterval(getTIme,1000);
+    	</script>
+
+    </body>
+</html>

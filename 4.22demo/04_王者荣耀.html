@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        *{margin:0;padding:0;}
+        html,body{ font-family: '微软雅黑' }
+				.banner{width:980px; height:500px;margin:0 auto;position: relative; }
+				.banner>img{ width: 980px; height: 500px; }
+				.banner #small img{ width: 80px;height: 80px;margin:0 3px; }
+				.banner #small{ position: absolute; bottom: 0; right:10px }
+				.banner .mask{ background: rgba(0,0,0,0.3);width: 230px; height: 100%; position: absolute;left: 0; top: 0;color: white;text-align: center; }
+				.banner .mask h3{font-size:40px;text-align: center;}
+				.banner .mask h4{margin-top: 100px; text-align: center;color: #4FA0E4;line-height: 40px}
+				.banner .mask p{padding:10px 20px; line-height: 30px;height: 80px;}
+				.banner .mask span{display: block;width: 140px; height: 36px; border:1px solid white;margin:20px auto;border-radius: 18px;/*圆角弧度*/text-align: center;line-height: 36px;}
+				.banner .mask span:hover{ background: white;color:  #4FA0E4 }
+        </style>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+      	// 原生js
+      	window.onload = function(){
+      
+      	// 数据信息
+      	var person = [
+      	['鲁班七号','机关造物','鲁班大师，智障250，膜拜，忌惮膜拜。','s_1.jpg','b_1.jpg'],
+      	['安琪拉','暗夜萝莉','生命就像人家的魔法书，涂涂改改又是一年','s_2.jpg','b_2.jpg'],
+      	['庄周','逍遥梦幻','蝴蝶是我，我就是蝴蝶','s_3.jpg','b_3.jpg'],
+      	['大乔','伊势巫女','守望着天空，大海，和你的回忆。','s_4.jpg','b_4.jpg'],
+      	['妲己','魅惑之狐','为什么会痛苦，一直微笑就好了','s_5.jpg','b_5.jpg'],
+      	['狄仁杰','断案大师','以陛下的名义，你被捕了','s_6.jpg','b_6.jpg'],
+      	['曹操','鲜血枭雄','宁叫我负天下人','s_7.jpg','b_7.jpg'],
+      	['李白','青莲剑仙','一篇诗，一斗酒，一曲长歌，一剑天涯','s_8.jpg','b_8.jpg'],
+
+      	];
+      	// 0:名字 1:称号 2:语录 3:小图 4:大图
+      	// 获取到页面中所需要的标签
+      	var name_obj = document.getElementById('uname');//名字
+      	var title_obj = document.getElementById('title');//称号
+      	var speak_obj = document.getElementById('speak');//语句
+      	var small_obj = document.getElementById('small');//小图盒子
+      	var bigimg_obj = document.getElementById('bigimg');//大图
+      	
+      	// 初识信息显示
+      	name_obj.innerHTML = person[0][0];//第一个人的名字
+      	title_obj.innerHTML = person[0][1];//第一个人的称号
+      	speak_obj.innerHTML = person[0][2];//第一个人的语录
+      	bigimg_obj.src = "imgs/"+person[0][4];//第一个人的大图
+      	// 小图循环显示出来
+      	var small_box = "";//放置小图的盒子
+      	for(key in person){
+      		small_box += "<img src='imgs/"+person[key][3]+"'>";
+      	}
+      	// console.log(small_box);//生成img标签放到盒子里
+      	small_obj.innerHTML = small_box;
+      	
+      	// console.log(small_obj.children);
+      	
+      	// 点击小图切换对应信息
+      	// 小图是 small_obj.children  是一个数组 要循环遍历
+      	var small_imgs = small_obj.children;
+      	for(var i = 0;i<small_imgs.length;i++){
+      		small_imgs[i].onclick = function(){
+      			//1.获取到当前点击的图的下标
+      			var current;//当前元素的下标
+		    		for(var j=0;j<small_imgs.length;j++){
+		    			if(this == small_imgs[j]){
+		    				//下标就是j
+		    				current = j;
+		    			}
+		    		}
+
+		    		//2.切换相应信息
+		    		name_obj.innerHTML = person[current][0];//第一个人的名字
+		      	title_obj.innerHTML = person[current][1];//第一个人的称号
+		      	speak_obj.innerHTML = person[current][2];//第一个人的语录
+		      	bigimg_obj.src = "imgs/"+person[current][4];//第一个人的大图
+
+
+      		}
+      	}
+
+
+
+				}	
+
+				// 2.jquery
+				
+
+
+        </script>
+    </head>
+    <body>
+    <div class="banner">
+    	<!-- 大图 -->
+    	<img id="bigimg" src="imgs/b_1.jpg">
+    	<!-- 文本信息 -->
+    	<div class="mask">
+    		<h4 id="title">凤求凰</h4>
+    		<h3 id="uname">李白</h3>
+    		<p id="speak">生命就像人家的魔法书，涂涂改改又是一年</p>
+    		<span>播放语音</span>
+    	</div>
+    	<!-- 小图 -->
+    	<div id="small" >
+    		
+    	</div>
+    </div>
+    </body>
+</html>	

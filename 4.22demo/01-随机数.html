@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 封装成一个函数，可以直接传值调用
+		function random(min,max){
+			// 思路
+			// var max = 8;
+			// var min = 5;
+			// Math.random() 	0-1
+			// 				*5	0-5
+			// 				*8	0-8
+			// 				+5	5-8
+			// 						 
+			var num = Math.random()*(max-min)+min;
+			return num;
+
+		}
+
+		var n = random(10,100);
+		console.log(n);
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+        	*{margin: 0;padding: 0;}
+			#code_txt{
+				display: inline-block;
+				width: 100px;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				border: 1px solid #eee;
+				background: pink;
+			}
+			form input{height: 26px;line-height: 26px;}
+			/* form *{float: left;} */
+        </style>
+    </head>
+    <body>
+    <center>
+    <form action="" name="login">
+    	验证码<input type="text" name="code" onblur="validate_code()">
+    	<span id="code_txt"></span><a href="#" id="code_click">看不清,换一张?</a>
+    </form>
+    </center>
+    <script type="text/javascript">
+    	// 生成6位数验证码  0-9  a-z  A-Z
+    	var code_arr = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    	function create_code(){
+	    	
+	    	
+	    	// 随机生成一个下标		0-code_arr.length-1		0-55
+	    	// console.log(Math.floor(Math.random()*55));
+	    	var code = "";//存验证码的盒子
+	    	
+	    	for(var i = 0;i<6;i++){
+	    		var key = Math.floor(Math.random()*(code_arr.length-1));//随机下标
+	    		console.log(code_arr[key]);
+	    		code += code_arr[key];
+	    	}
+	    	console.log(code);
+	    	var span_obj = document.getElementById('code_txt');
+	    	span_obj.innerHTML = code;
+		}
+		// 调用一次函数;
+		create_code();
+    	// 添加单击事件
+    	var click_obj  = document.getElementById('code_click');
+    	console.log(click_obj);
+    	click_obj.onclick = create_code;
+
+    	// 验证一下验证码是否正确	失去焦点验证
+    	// 1.不管大小写都可以
+    	// 2.验证失败清空文本框
+    	
+    	function validate_code(){
+    		var my_code = document.forms['login']['code'].value;
+    		var code = document.getElementById('code_txt').innerHTML;
+    		console.log(my_code);
+    		console.log(code);
+    		if(my_code.toUpperCase() == code.toUpperCase()){
+    			alert('验证通过');
+    		}else{
+    			alert('验证失败');
+    			document.forms['login']['code'].value = '';
+    			document.forms['login']['code'].focus();//获取焦点
+    		}
+    	}
+
+    	
+
+    	
+    	
+    </script>
+    </body>
+</html>
